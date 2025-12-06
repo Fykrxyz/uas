@@ -258,12 +258,23 @@ if menu == "Halaman Utama":
     st.title("Alur Pemilihan Uji Statistik")
     st.write("Berikut adalah Flowchart yang digunakan sebagai acuan dalam aplikasi ini:")
     
-    try:
-        # Pastikan file flowchart ada, atau ganti dengan st.info jika belum ada
-        st.image("flowchart_proyek.png", caption="Flowchart Pengujian Hipotesis", use_container_width=True)
-    except:
-        st.warning("⚠️ File gambar 'flowchart_proyek.png' belum ditemukan. Harap upload gambar flowchart.")
+    pdf_path = "Flowchart UAS Pemkom 2025.pdf"
 
+    try:
+        # PERBAIKAN: Menggunakan variabel 'f' yang didefinisikan pada 'with open'
+        with open(pdf_path, "rb") as f:
+            pdf_data = f.read()
+
+        base64_pdf = base64.b64encode(pdf_data).decode('utf-8')
+
+        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+    
+    except FileNotFoundError:
+        st.error(f"❌ **ERROR FATAL**: File Flowchart tidak ditemukan di path: `{pdf_path}`.")
+        st.warning("Pastikan path file PDF sudah benar dan file tersedia di lokasi tersebut.")
+    except Exception as e:
+        st.error(f"Error tak terduga saat memuat PDF: {e}")
 # ==============================================================================
 # UJI PROPORSI (1 & 2 SAMPEL)
 # ==============================================================================
