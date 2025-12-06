@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import scipy as sp
 from scipy.stats import norm, f, t
 from scipy import stats
 import base64
