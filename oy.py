@@ -261,7 +261,7 @@ if menu == "Halaman Utama":
     # --- CARA MENAMPILKAN GAMBAR FLOWCHART ---
     try:
         # Pastikan nama file gambarnya benar (huruf besar/kecil berpengaruh)
-        st.image("flowchart.png", caption="Diagram Alur Pengerjaan", use_container_width=True)
+        st.image("flowchart.jpg", caption="Diagram Alur Pengerjaan", use_container_width=True)
         
     except Exception as e:
         st.error("Gambar flowchart.png tidak ditemukan. Pastikan sudah di-upload.")
