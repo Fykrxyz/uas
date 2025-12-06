@@ -257,24 +257,14 @@ with st.sidebar:
 if menu == "Halaman Utama":
     st.title("Alur Pemilihan Uji Statistik")
     st.write("Berikut adalah Flowchart yang digunakan sebagai acuan dalam aplikasi ini:")
-    
-    pdf_path = "Flowchart UAS Pemkom 2025.pdf"
 
+    # --- CARA MENAMPILKAN GAMBAR FLOWCHART ---
     try:
-        with open(pdf_path, "rb") as f:
-            pdf_data = f.read()
+        # Pastikan nama file gambarnya benar (huruf besar/kecil berpengaruh)
+        st.image("flowchart.png", caption="Diagram Alur Pengerjaan", use_container_width=True)
         
-        base64_pdf = base64.b64encode(pdf_data).decode('utf-8')
-
-        # PERUBAHAN DI SINI: Ganti iframe menjadi embed
-        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px" type="application/pdf">'
-        
-        st.markdown(pdf_display, unsafe_allow_html=True)
-    
-    except FileNotFoundError:
-        st.error(f"❌ File tidak ditemukan: {pdf_path}")
     except Exception as e:
-        st.error(f"Error: {e}")
+        st.error("Gambar flowchart.png tidak ditemukan. Pastikan sudah di-upload.")
 # ==============================================================================
 # UJI PROPORSI (1 & 2 SAMPEL)
 # ==============================================================================
