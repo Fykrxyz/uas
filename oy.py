@@ -261,20 +261,20 @@ if menu == "Halaman Utama":
     pdf_path = "Flowchart UAS Pemkom 2025.pdf"
 
     try:
-        # PERBAIKAN: Menggunakan variabel 'f' yang didefinisikan pada 'with open'
         with open(pdf_path, "rb") as f:
             pdf_data = f.read()
-
+        
         base64_pdf = base64.b64encode(pdf_data).decode('utf-8')
 
-        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600"></iframe>'
+        # PERUBAHAN DI SINI: Ganti iframe menjadi embed
+        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px" type="application/pdf">'
+        
         st.markdown(pdf_display, unsafe_allow_html=True)
     
     except FileNotFoundError:
-        st.error(f"❌ **ERROR FATAL**: File Flowchart tidak ditemukan di path: `{pdf_path}`.")
-        st.warning("Pastikan path file PDF sudah benar dan file tersedia di lokasi tersebut.")
+        st.error(f"❌ File tidak ditemukan: {pdf_path}")
     except Exception as e:
-        st.error(f"Error tak terduga saat memuat PDF: {e}")
+        st.error(f"Error: {e}")
 # ==============================================================================
 # UJI PROPORSI (1 & 2 SAMPEL)
 # ==============================================================================
